@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script> 
+</head>
+<body>
+    <header class="main-header">
+        
+        <button id="darkModeToggle">🌙 Dark Mode</button>
+    </header>
+
+    <div class="container">
+        <div class="weather-panel">
+            <h2>🌦️ Weather Search</h2>
+            
+            <div class="state-wrapper autocomplete select-wrapper">
+                <label for="stateSearch">🏙️ State (India):</label>
+                <input type="text" id="stateSearch" placeholder="Type a state (e.g. 'Uttar Pradesh')">
+                <div class="autocomplete-items" id="state-autocomplete-list"></div>
+            </div>
+
+            <div class="city-wrapper autocomplete select-wrapper">
+                <label for="citySearch">🌆 City:</label>
+                <input type="text" id="citySearch" placeholder="Type a city (e.g. 'Lucknow')" disabled>
+                <div class="autocomplete-items" id="city-autocomplete-list"></div>
+            </div>
+
+            <button id="getWeatherBtn" class="plot-btn">Get Weather 🌥️</button>
+
+            <div id="result"></div>
+
+            <div id="chartContainer">
+                <div id="chartControls">
+                    <div class="control-group">
+                         <select id="chartType">
+                            <option value="line">Line Chart</option>
+                            <option value="bar">Bar Chart</option>
+                        </select>
+                        <select id="rangeType">
+                            <option value="daily">Daily (Next 5 Days)</option>
+                            <option value="hourly">Hourly (Next 48h)</option>
+                        </select>
+                    </div>
+                    <button id="hideChartBtn" class="plot-btn">Hide Graph</button>
+                </div>
+                <canvas id="tempChart"></canvas>
+            </div>
+        </div>
+
+        <div class="favourites-panel">
+            <h2>Favourite Places ♥️</h2>
+            <div id="favouritesList">
+                
+            </div>
+        </div>
+    </div>
+
+    
+    <div id="auth-modal" style="display: none;">
+        <div class="auth-modal-content">
+            <button id="auth-modal-close">&times;</button>
+            <h2 id="auth-modal-title">Login</h2>
+            
+            
+            <form id="auth-form">
+                <div class="auth-form-group">
+                    <label for="auth-email">Email</label>
+                    <input type="email" id="auth-email" required>
+                </div>
+                <div class="auth-form-group">
+                    <label for="auth-password">Password</label>
+                    <input type="password" id="auth-password" required>
+                    <span id="password-toggle-icon">👁️</span>
+                </div>
+                
+                
+
+                <p id="auth-message" class="auth-message"></p> 
+                <button type="submit" id="auth-login-btn" class="plot-btn">Login</button>
+                <button type="submit" id="auth-signup-btn" class="plot-btn">Sign Up</button>
+            </form>
+
+            
+
+            <p id="auth-prompt">New to the page? <a href="#" id="auth-toggle-link">Click here to Sign Up!</a></p>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+    <script type="module" src="chart.js"></script>
+</body>
+</html>
+

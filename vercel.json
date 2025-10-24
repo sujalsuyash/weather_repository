@@ -7,7 +7,8 @@
     },
     {
       "src": "public/**",
-      "use": "@vercel/static"
+      "use": "@vercel/static",
+      "config": { "zeroConfig": true } 
     }
   ],
   "routes": [
@@ -16,7 +17,9 @@
       "dest": "/server.js"
     },
     {
-      "handle": "filesystem"
+       "src": "/(.*\\.(js|css|ico|png|jpg|svg))",
+       "dest": "/public/$1",
+       "headers": { "Cache-Control": "s-maxage=31536000, immutable" }
     },
     {
       "src": "/(.*)",
